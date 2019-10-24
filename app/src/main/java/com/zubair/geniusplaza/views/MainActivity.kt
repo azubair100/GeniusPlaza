@@ -1,7 +1,8 @@
-package com.zubair.geniusplaza
+package com.zubair.geniusplaza.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.zubair.geniusplaza.R
 
 class MainActivity : AppCompatActivity() {
 
