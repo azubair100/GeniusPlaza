@@ -222,6 +222,9 @@
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.zubair.geniusplaza.views" />
     </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.zubair.geniusplaza.network" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
