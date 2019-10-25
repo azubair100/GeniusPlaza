@@ -18,7 +18,6 @@ import com.zubair.geniusplaza.viewmodels.ListViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
 
 class ListFragment : Fragment() {
-
     private lateinit var listViewModel: ListViewModel
     private lateinit var userAdapter: UserAdapter
 
@@ -30,13 +29,20 @@ class ListFragment : Fragment() {
         userAdapter = UserAdapter ()
         userAdapter.setHasStableIds(true)
 
+    }
+
+    private fun observeViewModel(){
         listViewModel.users.observe(this, Observer<PagedList<User>> {
             userAdapter.submitList(it)
             if (userAdapter.currentList!!.size > 0) {
-
+                list_progress_bar.visibility = View.GONE
+                user_list_rv.visibility = View.VISIBLE
+            }
+            else{
+                list_progress_bar.visibility = View.VISIBLE
+                user_list_rv.visibility = View.INVISIBLE
             }
         })
-
     }
 
     private fun goToUserCreationFragment() {
@@ -48,11 +54,12 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initAdapter()
+        observeViewModel()
+        setUpRecyclerView()
         create_new_user.setOnClickListener(View.OnClickListener { goToUserCreationFragment()})
 
     }
-    private fun initAdapter() {
+    private fun setUpRecyclerView() {
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         user_list_rv.layoutManager = linearLayoutManager
         user_list_rv.adapter = userAdapter
@@ -62,7 +69,5 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_list, container, false)
-
-
 
 }
