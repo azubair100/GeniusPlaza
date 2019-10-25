@@ -13,7 +13,7 @@ class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bindTo(user: User?) {
         itemView.UserName.text = user?.firstName + " " + user?.lastName
-        Picasso.get().load(user?.url).into(itemView.UserAvatar)
+        Picasso.get().load(user?.url).placeholder(R.drawable.default_picture).into(itemView.UserAvatar)
     }
 
     companion object {
